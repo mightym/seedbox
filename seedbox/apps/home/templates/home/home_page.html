@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags %}
+
+{% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}
+
+{% block content %}
+
+  <header class="intro-header">
+
+  </header>
+
+  <div class="project-grid container">
+    {% for project in self.projects %}
+      <div class="project-item {{ project.hsize_display }}">
+
+        {% if project.previewimage %}
+          {% image project.previewimage width-400 as im %}
+          <figure>
+            <img src="{{ im.url }}" draggable="false">
+          </figure>
+          <div class="project-excerpt closed">
+            <a href="#">
+              <span class="item-label">{{ project }}</span>
+            </a>
+          </div>
+        {% else %}
+
+        <div class="project-excerpt">
+          <a href="#">
+            <span class="item-label">{{ project }}</span>
+          </a>
+        </div>
+
+        {% endif %}
+
+      </div>
+    {% endfor%}
+  </div>
+
+{% endblock %}
