@@ -1,32 +1,41 @@
 {% extends "base.html" %}
-{% load wagtailimages_tags %}
+{% load static wagtailimages_tags %}
 
 {% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}
 
 {% block content %}
 
-  <header class="intro-header">
-
+  <header class="intro-header container">
+  <h1>Lincoln Loop Labs</h1>
   </header>
 
   <div class="project-grid container">
+
+    <div class="project-item ll-logo columns-2">
+      <figure>
+        <img src="{% static 'assets/img/ll_logo.png' %}" draggable="false">
+      </figure>
+    </div>
+
     {% for project in self.projects %}
       <div class="project-item {{ project.hsize_display }}">
+
+
 
         {% if project.previewimage %}
           {% image project.previewimage width-400 as im %}
           <figure>
-            <img src="{{ im.url }}" draggable="false">
+            <img src="{{ im.url }}" class="desaturate" draggable="false">
           </figure>
           <div class="project-excerpt closed">
-            <a href="#">
+            <a href="{{ project.slug }}">
               <span class="item-label">{{ project }}</span>
             </a>
           </div>
         {% else %}
 
         <div class="project-excerpt">
-          <a href="#">
+          <a href="{{ project.slug }}">
             <span class="item-label">{{ project }}</span>
           </a>
         </div>

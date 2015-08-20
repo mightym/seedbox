@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static wagtailimages_tags %}
+
+{% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}
+
+{% block content %}
+  {% for block in self.content %}
+    {% if block.block_type == 'project_header' %}
+      {{ block }}
+    {% elif block.block_type == 'section_divider'  %}
+      {{ block }}
+    {% endif %}
+  {% endfor %}
+
+
+
+
+{% endblock %}

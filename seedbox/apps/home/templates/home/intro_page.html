@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static wagtailimages_tags %}
+
+{% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}
+
+{% block content %}
+  <section class="intro-section">
+        <img src="{% static "assets/img/space/galaxy_bg.jpg" %}" class="scale-me galaxy">
+    <div class="twinkling scale-me"></div>
+    <div class="twinkling2 scale-me"></div>
+    <img src="{% static "assets/img/space/earth.png" %}" class="scale-me earth">
+    <img src="{% static "assets/img/space/moon.png" %}" class="scale-me moon">
+
+    <h1 class="ll-logo">Lincoln Loop</h1>
+
+  </section>
+{% endblock %}

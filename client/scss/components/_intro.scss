@@ -1,0 +1,141 @@
+
+.scale-me {
+  position: absolute;
+  webkit-transform: translate3d(0,0,0);
+  -webkit-transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  -ms-transform: translate3d(0,0,0);
+  -o-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+.box {
+  display: block;
+  background: #fff;
+  padding: 0em 1.5em;
+  margin-bottom: 1.5em;
+}
+
+@keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+@-webkit-keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+@-moz-keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+@-ms-keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+
+@keyframes move-twink-back2 {
+    from {background-position:0 0;}
+    to {background-position:-10000px 0px;}
+}
+@-webkit-keyframes move-twink-back2 {
+    from {background-position:0 0;}
+    to {background-position:-10000px 0px;}
+}
+@-moz-keyframes move-twink-back2 {
+    from {background-position:0 0;}
+    to {background-position:-10000px 0px;}
+}
+@-ms-keyframes move-twink-back2 {
+    from {background-position:0 0;}
+    to {background-position:-10000px 0px;}
+}
+
+.galaxy {
+  z-index:1;
+}
+
+.twinkling{
+  background:transparent url(/static/assets/img/space/stars.png) repeat top center;
+  z-index:1;
+  -moz-animation:move-twink-back 200s linear infinite;
+  -ms-animation:move-twink-back 200s linear infinite;
+  -o-animation:move-twink-back 200s linear infinite;
+  -webkit-animation:move-twink-back 200s linear infinite;
+  animation:move-twink-back 200s linear infinite;
+}
+
+.twinkling2{
+  background:transparent url(/static/assets/img/space/stars.png) repeat top center;
+  z-index:1;
+  -moz-animation:move-twink-back2 500s linear infinite;
+  -ms-animation:move-twink-back2 500s linear infinite;
+  -o-animation:move-twink-back2 500s linear infinite;
+  -webkit-animation:move-twink-back2 500s linear infinite;
+  animation:move-twink-back2 500s linear infinite;
+}
+
+.earth {
+  z-index:2;
+}
+
+.moon {
+  z-index:3;
+}
+
+.cursor {
+  position: absolute;
+  bottom: 40px;
+  left: 35px;
+  display: inline-block;
+  background: #111;
+  margin-left: 1px;
+  width: 1px;
+  height: 15px;
+  -webkit-animation: blink 1s linear 0s infinite;
+  -moz-animation: blink 1s linear 0s infinite;
+  -ms-animation: blink 1s linear 0s infinite;
+  -o-animation: blink 1s linear 0s infinite;
+}
+
+@-webkit-keyframes blink {
+  0%   { background: #fff }
+  50%  { background: #333 }
+  100% { background: #fff }
+}
+
+@-moz-keyframes blink {
+  0%   { background: #fff }
+  50%  { background: #333 }
+  100% { background: #fff }
+}
+
+@-ms-keyframes blink {
+  0%   { background: #fff }
+  50%  { background: #333 }
+  100% { background: #fff }
+}
+
+@-o-keyframes blink {
+  0%   { background: #fff }
+  50%  { background: #333 }
+  100% { background: #fff }
+}
+
+.shade {
+  opacity: 0.5;
+}
+
+
+.ll-logo {
+  position: absolute;
+  display: block;
+  z-index: 9;
+  top: 310px;
+  left: 50%;
+  margin-left: -70px;
+  width: 140px;
+  height: 140px;
+  font-size: 0;
+  background: url(/static/assets/img/ll-logo-white.svg) no-repeat center;
+  background-size: 100%;
+}

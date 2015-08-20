@@ -8,6 +8,7 @@ from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore import blocks
 from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailimages.blocks import ImageChooserBlock
+from wagtail.wagtailembeds.blocks import EmbedBlock
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
 
@@ -18,42 +19,48 @@ from taggit.models import TaggedItemBase
 from model_utils import Choices
 
 
-class ProjectBlock(blocks.StructBlock):
-
-    title = blocks.CharBlock(required=True)
+class ProjectHeaderBlock(blocks.StructBlock):
+    title = blocks.CharBlock(required=False)
     bgimage = ImageChooserBlock()
-    bgimage_width = blocks.CharBlock(required=True, default='2048')
-    height = blocks.CharBlock(required=True, default='fullscreen')
-    css = blocks.TextBlock(required=False)
-
-    assets = blocks.ListBlock(blocks.StructBlock([
-        ('image', ImageChooserBlock()),
-        ('css', blocks.TextBlock(required=False)),
-    ]))
 
     class Meta:
         icon = 'cogs'
         form_classname = 'project-block'
-        template = 'home/blocks/section.html'
+        template = 'home/blocks/project_header.html'
 
-    def vsize_display(self):
-        return self.VSIZE[self.vsize]
 
-    def hsize_display(self):
-        return self.HSIZE[self.hsize]
+class ProjectEmbedBlock(blocks.StructBlock):
+    title = EmbedBlock(required=False)
+    bgimage = ImageChooserBlock()
+
+    class Meta:
+        icon = 'cogs'
+        form_classname = 'embed-block'
+        template = 'home/blocks/project_embed.html'
+
 
 
 class HomePage(Page):
     description = models.CharField(_('Page Description'), max_length=500, null=True, blank=True)
-    subpage_types = ['ProjectPage']
+    subpage_types = ['ProjectPage', 'IntroPage', ]
 
     @property
     def projects(self):
         # Get list of live project pages that are descendants of this page
-        projects = ProjectPage.objects.live().descendant_of(self)
+        projects = ProjectPage.objects.live().descendant_of(self).order_by('?')
         return projects
 
 HomePage.content_panels = [
+    FieldPanel('title'),
+    FieldPanel('description'),
+]
+
+class IntroPage(Page):
+    description = models.CharField(_('Page Description'), max_length=500, null=True, blank=True)
+    subpage_types = []
+
+IntroPage.content_panels = [
+    FieldPanel('title'),
     FieldPanel('description'),
 ]
 
@@ -67,7 +74,7 @@ class ProjectPage(Page):
     HSIZE = Choices(
         ('columns1', _('columns-1')),
         ('columns2', _('columns-2')),
-        ('columns4', _('columns-4')),
+        ('columns3', _('columns-3')),
     )
     body = RichTextField(blank=True)
     previewimage = models.ForeignKey(
@@ -81,7 +88,8 @@ class ProjectPage(Page):
     tags = ClusterTaggableManager(through=ProjectTag, blank=True)
     search_name = "ProjectPage"
     content = StreamField([
-        ('section', ProjectBlock())
+        ('project_header', ProjectHeaderBlock()),
+        ('project_embed', ProjectEmbedBlock()),
     ])
 
     def hsize_display(self):

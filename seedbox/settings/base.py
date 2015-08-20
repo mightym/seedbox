@@ -52,6 +52,7 @@ INSTALLED_APPS = (
     'compressor',
     'modelcluster',
     'sorl.thumbnail',
+    # 'debug_toolbar',
 
     'wagtail.wagtailcore',
     'wagtail.wagtailadmin',

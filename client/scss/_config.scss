@@ -1,5 +1,5 @@
 /* TYPOGRAPHY */
-$base-font: 'Bank Gothic W01 Light', Helvetica, Arial, sans-serif;
+$base-font: 'Helvetica Rounded LT W01 Bold', Helvetica, Arial, sans-serif;
 $support-font: $base-font; // Often a serif
 
 $base-font-size: 1em; // Equals 100%, 1rem, or roughly 16px
@@ -23,7 +23,7 @@ $guide-color: #f1e8fd;
 }
 
 // Generic Grays/Whites/Darks
-$ltblue: rgb(70,82,90);
+$ltblue: #42c1f4;
 $lightltblue:  rgb(95, 112, 123);
 $black: #222;
 $dark-gray: #444;
@@ -79,38 +79,4 @@ h1, h2, h3, h4, h5, h6, p, a {
 h1, h2, h3, h4, h5, h6 {
   color: $ltblue;
   font-family: $base-font;
-}
-
-
-.container {
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.container:after, .row:after {
-  clear: both;
-}
-
-@media (min-width:768px) {
-  .container {
-    max-width: 740px;
-  }
-}
-
-@media (min-width:992px) {
-  .container {
-    max-width: 960px;
-  }
-}
-
-@media (min-width:1200px) {
-  .container {
-    max-width: 1160px;
-  }
-}
-
-.row {
-  width: auto;
 }
